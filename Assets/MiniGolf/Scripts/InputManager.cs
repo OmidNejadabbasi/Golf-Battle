@@ -55,14 +55,13 @@ public class InputManager : MonoBehaviour
         );
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition); //create a ray
         float dist; //varibale to get ditance
-        if (plane.Raycast(ray, out dist))
-        {
-            var v3Pos = ray.GetPoint(dist); //get the point at the given distance
-            //calculate the distance
-            distanceBetweenBallAndMouseClick = Vector3.Distance(
-                v3Pos,
-                BallControl.instance.transform.position
-            );
-        }
+        plane.Raycast(ray, out dist);
+
+        var v3Pos = ray.GetPoint(dist); //get the point at the given distance
+        //calculate the distance
+        distanceBetweenBallAndMouseClick = Vector3.Distance(
+            v3Pos,
+            BallControl.instance.transform.position
+        );
     }
 }
