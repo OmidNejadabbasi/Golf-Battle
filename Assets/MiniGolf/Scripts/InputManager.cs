@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.singleton.gameStatus != GameStatus.Playing) return; //if gameStatus is not playing, return
+        if (GameManager.instance.gameStatus != GameStatus.Playing) return; //if gameStatus is not playing, return
 
         if (Input.GetMouseButtonDown(0) && !canRotate)          //if mouse button is clicked and canRotate is false
         {

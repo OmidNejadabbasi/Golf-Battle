@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image powerBar;        //ref to powerBar image
     [SerializeField] private Text shotText;         //ref to shot info text
-    [SerializeField] private GameObject mainMenu, gameMenu, gameOverPanel, retryBtn, nextBtn;   //important gameobjects
+    [SerializeField] private GameObject mainMenu, gameUI, gameOverPanel, retryBtn, nextBtn;   //important gameobjects
     [SerializeField] private GameObject container, lvlBtnPrefab;    //important gameobjects
 
     public Text ShotText { get { return shotText; } }   //getter for shotText
@@ -33,51 +33,42 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        if (GameManager.singleton.gameStatus == GameStatus.None)    //if gamestatus is none
+        if (GameManager.instance.gameStatus == GameStatus.None)    //if gamestatus is none
         {   
-            CreateLevelButtons();                       //create level buttons
+            CreateLevelButtons();
         }     //we check for game status, failed or complete
-        else if (GameManager.singleton.gameStatus == GameStatus.Failed ||
-            GameManager.singleton.gameStatus == GameStatus.Complete)
+        else if (GameManager.instance.gameStatus == GameStatus.Failed ||
+            GameManager.instance.gameStatus == GameStatus.Complete)
         {
-            mainMenu.SetActive(false);                                      //deavtivate main menu
-            gameMenu.SetActive(true);                                       //activate game menu
-            LevelManager.instance.SpawnLevel(GameManager.singleton.currentLevelIndex);  //spawn level
+            mainMenu.SetActive(false);
+            gameUI.SetActive(true);
+            LevelManager.instance.SpawnLevel(GameManager.instance.currentLevelIndex);  //spawn level
         }
     }
 
-    /// <summary>
-    /// Method which spawn levels button
-    /// </summary>
     void CreateLevelButtons()
     {
         //total count is number of level datas
         for (int i = 0; i < LevelManager.instance.levelDatas.Length; i++)
         {
-            GameObject buttonObj = Instantiate(lvlBtnPrefab, container.transform);   //spawn the button prefab
-            buttonObj.transform.GetChild(0).GetComponent<Text>().text = "" + (i + 1);   //set the text child
-            Button button = buttonObj.GetComponent<Button>();                           //get the button componenet
-            button.onClick.AddListener(() => OnClick(button));                          //add listner to button
+            GameObject buttonObj = Instantiate(lvlBtnPrefab, container.transform);
+            buttonObj.transform.GetChild(0).GetComponent<Text>().text = "" + (i + 1);
+            Button button = buttonObj.GetComponent<Button>();
+            button.onClick.AddListener(() => OnClick(button));
         }
     }
 
-    /// <summary>
-    /// Method called when we click on button
-    /// </summary>
     void OnClick(Button btn)
     {
         mainMenu.SetActive(false);                                                      //deactivate main menu
-        gameMenu.SetActive(true);                                                       //activate game manu
-        GameManager.singleton.currentLevelIndex = btn.transform.GetSiblingIndex(); ;    //set current level equal to sibling index on button
-        LevelManager.instance.SpawnLevel(GameManager.singleton.currentLevelIndex);      //spawn level
+        gameUI.SetActive(true);                                                       //activate game manu
+        GameManager.instance.currentLevelIndex = btn.transform.GetSiblingIndex(); ;    //set current level equal to sibling index on button
+        LevelManager.instance.SpawnLevel(GameManager.instance.currentLevelIndex);      //spawn level
     }
 
-    /// <summary>
-    /// Method call after level fail or win
-    /// </summary>
     public void GameResult()
     {
-        switch (GameManager.singleton.gameStatus)
+        switch (GameManager.instance.gameStatus)
         {
             case GameStatus.Complete:                       //if completed
                 gameOverPanel.SetActive(true);              //activate game finish panel
@@ -92,14 +83,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //method to go to main menu
     public void HomeBtn()
     {
-        GameManager.singleton.gameStatus = GameStatus.None;
+        GameManager.instance.gameStatus = GameStatus.None;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    //method to reload scene
     public void NextRetryBtn()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

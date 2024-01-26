@@ -2,19 +2,16 @@
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager singleton;
+    public static GameManager instance;
 
-    [HideInInspector]
     public int currentLevelIndex;
-    [HideInInspector]
     public GameStatus gameStatus = GameStatus.None;
 
     private void Awake()
     {
-        if (singleton == null)
+        if (instance == null)
         {
-            singleton = this;
-            DontDestroyOnLoad(gameObject);
+            instance = this;
         }
         else
         {
