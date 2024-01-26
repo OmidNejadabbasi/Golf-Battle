@@ -56,19 +56,8 @@ public class BallControl : MonoBehaviour
             rgBody.angularVelocity = Vector3.zero; //set angular velocity to zero
             areaAffector.SetActive(true); //activate areaAffector
         }
-        if (canShoot) //if canSHoot is true
-        {
-            canShoot = false; //set canShoot to false
-            ballIsStatic = false; //set ballIsStatic to false
-            direction = startPos - endPos; //get the direction between 2 vectors from start to end pos
-            rgBody.AddForce(direction * force, ForceMode.Impulse); //add force to the ball in given direction
-            areaAffector.SetActive(false); //deactivate areaAffector
-            UIManager.instance.PowerBar.fillAmount = 0; //reset the powerBar to zero
-            force = 0; //reset the force to zero
-            startPos = endPos = Vector3.zero; //reset the vectors to zero
-        }
     }
-    
+
     // Unity native Method to detect colliding objects
     private void OnTriggerEnter(Collider other)
     {
@@ -106,7 +95,13 @@ public class BallControl : MonoBehaviour
     {
         if (!ballIsStatic)
             return; //no mouse detection if ball is moving
-        canShoot = true; //set canShoot true
+        ballIsStatic = false; //set ballIsStatic to false
+        direction = startPos - endPos; //get the direction between 2 vectors from start to end pos
+        rgBody.AddForce(direction * force, ForceMode.Impulse); //add force to the ball in given direction
+        areaAffector.SetActive(false); //deactivate areaAffector
+        UIManager.instance.PowerBar.fillAmount = 0; //reset the powerBar to zero
+        force = 0; //reset the force to zero
+        startPos = endPos = Vector3.zero; //reset the vectors to zero
         lineRenderer.gameObject.SetActive(false); //deactive lineRenderer
     }
 
