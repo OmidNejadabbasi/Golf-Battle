@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Script which controls the ball
-/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class BallControl : MonoBehaviour
 {
