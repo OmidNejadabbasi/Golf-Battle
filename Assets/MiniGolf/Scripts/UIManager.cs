@@ -2,9 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Script to control game UI
-/// </summary>
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;

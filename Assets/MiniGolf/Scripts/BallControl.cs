@@ -16,9 +16,7 @@ public class BallControl : MonoBehaviour
 
     private float force;                                    //actuale force which is applied to the ball
     private Rigidbody rgBody;                               //reference to rigidbody attached to this gameobject
-    /// <summary>
-    /// The below variables are used to decide the force to be applied to the ball
-    /// </summary>
+
     private Vector3 startPos, endPos;
     private bool canShoot = false, ballIsStatic = true;    //bool to make shooting stopping ball easy
     private Vector3 direction;                              //direction in which the ball will be shot
@@ -102,9 +100,7 @@ public class BallControl : MonoBehaviour
         lineRenderer.gameObject.SetActive(false);                           //deactive lineRenderer
     }
 
-    /// <summary>
-    /// Method used to convert the mouse position to the world position in respect to Level
-    /// </summary>
+
     Vector3 ClickedPoint()
     {
         Vector3 position = Vector3.zero;                                //get a new Vector3 varialbe

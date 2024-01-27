@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Script to handle sound of the game
-/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
@@ -22,9 +19,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Method which plays the required sound fx
-    /// </summary>
     public void PlayFx(FxTypes fxTypes)
     {
         switch (fxTypes)                                //switch case is used to run respective logic for respective FxType
@@ -35,17 +29,11 @@ public class SoundManager : MonoBehaviour
             case FxTypes.GAMECOMPLETEFX:                //if its GAMEWIN
                 fxSource.PlayOneShot(gameCompleteFx);   //play GAMEWIN fx
                 break;
-            case FxTypes.SHOTFX:
-                fxSource.PlayOneShot(shotFx);
-                break;
         }
 
     }
 }
 
-/// <summary>
-/// Enum to differ fx types, you can add as many fx types as possible
-/// </summary>
 public enum FxTypes
 {
     GAMEOVERFX, 

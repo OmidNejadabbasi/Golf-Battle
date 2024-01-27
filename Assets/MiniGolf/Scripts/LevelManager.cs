@@ -24,9 +24,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Method to spawn level
-    /// </summary>
     public void SpawnLevel(int levelIndex)
     {
         //we spawn the level prefab at required position
@@ -39,9 +36,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.gameStatus = GameStatus.Playing;      //set the game status to playing
     }
 
-    /// <summary>
-    /// Method used to reduce shot
-    /// </summary>
+
     public void ShotTaken()
     {
         if (shotCount > 0)                                          //if shotcount is more than 0
@@ -56,9 +51,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Method called when player failed the level
-    /// </summary>
+
     public void LevelFailed()
     {
         if (GameManager.instance.gameStatus == GameStatus.Playing) //check if the gamestatus is playing
@@ -68,9 +61,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Method called when player win the level
-    /// </summary>
     public void LevelComplete()
     {
         if (GameManager.instance.gameStatus == GameStatus.Playing) //check if the gamestatus is playing

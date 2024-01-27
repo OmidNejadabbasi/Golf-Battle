@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Script which detect mouse click and decide who will take input Ball or Camera
-/// </summary>
 public class InputManager : MonoBehaviour
 {
     [SerializeField]
@@ -48,7 +45,6 @@ public class InputManager : MonoBehaviour
 
     void GetDistance()
     {
-        //we create a plane whose mid point is at ball position and whose normal is toward Camera
         var plane = new Plane(
             Camera.main.transform.forward,
             BallControl.instance.transform.position

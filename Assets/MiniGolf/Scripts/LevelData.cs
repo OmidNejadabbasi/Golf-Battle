@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Class which store level data
-/// </summary>
 [System.Serializable]
 public class LevelData
 {
